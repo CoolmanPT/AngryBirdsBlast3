@@ -59,6 +59,7 @@ public class Balao {
 
     private void explodir() {
         baseSuportadora.libertarBalao();
+        getJogo().verificarInfluenciaObjetivoJogo(this);
 
     }
 

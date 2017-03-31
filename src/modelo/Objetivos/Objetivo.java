@@ -11,13 +11,9 @@ public abstract class Objetivo {
 
     }
 
-    protected void influenciar(Balao balao) {
+    public abstract void influenciar(Balao balao);
 
-    }
-
-    protected boolean isConcluido() {
-        return true;
-    }
+    public abstract boolean isConcluido();
 
 
 }

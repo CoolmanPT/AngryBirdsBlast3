@@ -33,6 +33,8 @@ public class Main {
                 boolean jogadaValida = jogo.interagir(linha,coluna);
 
 
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

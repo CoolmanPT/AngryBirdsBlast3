@@ -1,5 +1,8 @@
 package modelo.Objetivos;
 
+import modelo.Balao;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +11,33 @@ import java.util.List;
 public class ObjetivoJogo extends Objetivo {
     List<ObjetivoParcial> objetivosParciais;
 
-    public ObjetivoJogo(List<ObjetivoParcial> objetivosParciais) {
-        super();
+    public ObjetivoJogo() {
+
+        objetivosParciais = new ArrayList<>();
         this.objetivosParciais = objetivosParciais;
     }
 
     public void adicionar(ObjetivoParcial objetivoParcial) {
+        objetivosParciais.add(objetivoParcial);
+    }
+
+    @Override
+    public void influenciar(Balao balao) {
+        for (ObjetivoParcial objetivoParcial : objetivosParciais) {
+            if (objetivoParcial.hasInfluencia(balao)) {
+                objetivoParcial.influenciar(balao);
+            }
+
+        }
+    }
+
+    @Override
+    public boolean isConcluido() {
+        for (ObjetivoParcial objetivoParcial : objetivosParciais) {
+            if (!objetivoParcial.isConcluido()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

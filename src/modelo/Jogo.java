@@ -1,5 +1,8 @@
 package modelo;
 
+import modelo.Objetivos.ObjetivoJogo;
+import modelo.Objetivos.ObjetivoParcial;
+
 import java.util.Enumeration;
 
 /**
@@ -10,6 +13,7 @@ public class Jogo extends ObjetoComAreaJogavel{
     private int numeroMovimentosRestantes;
     private int pontuacao;
     private EstadoJogo estadoJogo;
+    private ObjetivoJogo objetivoJogo;
 
     public Jogo() {
         super();
@@ -17,6 +21,16 @@ public class Jogo extends ObjetoComAreaJogavel{
         numeroMovimentosRestantes = 10;
         pontuacao = 0;
         estadoJogo = EstadoJogo.A_DECORRER;
+
+        objetivoJogo = new ObjetivoJogo();
+        objetivoJogo.adicionar(new ObjetivoParcial(Especie.STELLA,2));
+    }
+
+    public void verificarInfluenciaObjetivoJogo(Balao balao) {
+        objetivoJogo.influenciar(balao);
+        if (objetivoJogo.isConcluido()){
+            estadoJogo = EstadoJogo.CONCLUIDO_VITORIA;
+        }
     }
 
 
@@ -50,6 +64,9 @@ public class Jogo extends ObjetoComAreaJogavel{
         boolean valido = areaJogavel.interagir(linha,coluna);
         if (valido) {
             decrementarNumMovimentosRestantes();
+            if (getNumeroMovimentosRestantes() == 0 && !objetivoJogo.isConcluido()){
+                estadoJogo = EstadoJogo.CONCLUIDO_DERROTA;
+            }
         }
         return valido;
 
