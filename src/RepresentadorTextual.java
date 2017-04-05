@@ -69,7 +69,9 @@ public class RepresentadorTextual {
         System.out.println("Numero de movimentos restantes: " + jogo.getNumeroMovimentosRestantes());
     }
 
-
+    private void representarObjetivos(){
+        System.out.println("Objetivos: ");
+    }
 
 
 }
