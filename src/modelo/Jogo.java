@@ -13,6 +13,7 @@ public class Jogo extends ObjetoComAreaJogavel{
     private int numeroMovimentosRestantes;
     private int pontuacao;
     private EstadoJogo estadoJogo;
+
     private ObjetivoJogo objetivoJogo;
 
     public Jogo() {
@@ -23,7 +24,7 @@ public class Jogo extends ObjetoComAreaJogavel{
         estadoJogo = EstadoJogo.A_DECORRER;
 
         objetivoJogo = new ObjetivoJogo();
-        objetivoJogo.adicionar(new ObjetivoParcial(Especie.STELLA,2));
+        objetivoJogo.adicionar(new ObjetivoParcial(Especie.STELLA,4));
     }
 
     public void verificarInfluenciaObjetivoJogo(Balao balao) {
@@ -44,6 +45,10 @@ public class Jogo extends ObjetoComAreaJogavel{
 
     public int getPontuacao() {
         return pontuacao;
+    }
+
+    public ObjetivoJogo getObjetivoJogo() {
+        return objetivoJogo;
     }
 
     public void incrementarPontuacao(int incremento) {

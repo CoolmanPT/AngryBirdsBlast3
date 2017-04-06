@@ -1,5 +1,7 @@
 import modelo.AreaJogavel;
 import modelo.Jogo;
+import modelo.Objetivos.Objetivo;
+import modelo.Objetivos.ObjetivoJogo;
 import modelo.bases.Base;
 import modelo.bases.BaseAr;
 import modelo.bases.BaseSuportadora;
@@ -19,6 +21,7 @@ public class RepresentadorTextual {
         representarAreaJogavel();
         representarPontuacao();
         representarNumeroMovimentosRestantes();
+        representarObjetivos();
 
     }
     private void representarAreaJogavel() {
@@ -70,7 +73,7 @@ public class RepresentadorTextual {
     }
 
     private void representarObjetivos(){
-        System.out.println("Objetivos: ");
+        System.out.println("Objetivos: " + jogo.getObjetivoJogo());
     }
 
 

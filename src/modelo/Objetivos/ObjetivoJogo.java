@@ -40,4 +40,9 @@ public class ObjetivoJogo extends Objetivo {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return ""+objetivosParciais;
+    }
 }

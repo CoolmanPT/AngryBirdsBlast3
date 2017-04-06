@@ -32,4 +32,10 @@ public class ObjetivoParcial extends Objetivo {
     public boolean isConcluido() {
         return quantidade <= 0;
     }
+
+    @Override
+    public String toString() {
+        String texto ="";
+        return texto = "Especie: " + especie + "\n" + "Quantidade: " + quantidade + "\n";
+    }
 }
