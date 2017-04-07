@@ -43,6 +43,8 @@ public class ObjetivoJogo extends Objetivo {
 
     @Override
     public String toString() {
-        return ""+objetivosParciais;
+        String texto = "";
+        texto += objetivosParciais;
+        return texto;
     }
 }

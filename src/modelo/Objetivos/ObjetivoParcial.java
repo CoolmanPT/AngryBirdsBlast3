@@ -35,7 +35,6 @@ public class ObjetivoParcial extends Objetivo {
 
     @Override
     public String toString() {
-        String texto ="";
-        return texto = "Especie: " + especie + "\n" + "Quantidade: " + quantidade + "\n";
+        return "Especie: " + especie + "\n" + "Quantidade: " + quantidade + "\n";
     }
 }

@@ -3,8 +3,6 @@ package modelo;
 import modelo.Objetivos.ObjetivoJogo;
 import modelo.Objetivos.ObjetivoParcial;
 
-import java.util.Enumeration;
-
 /**
  * Created by bruno on 10/03/2017.
  */
@@ -25,6 +23,7 @@ public class Jogo extends ObjetoComAreaJogavel{
 
         objetivoJogo = new ObjetivoJogo();
         objetivoJogo.adicionar(new ObjetivoParcial(Especie.STELLA,4));
+        objetivoJogo.adicionar(new ObjetivoParcial(Especie.BOMB, 3));
     }
 
     public void verificarInfluenciaObjetivoJogo(Balao balao) {
