@@ -1,7 +1,8 @@
 package modelo;
 
 import modelo.Objetivos.ObjetivoJogo;
-import modelo.Objetivos.ObjetivoParcial;
+import modelo.Objetivos.ObjetivoParcialBalao;
+import modelo.suportados.Balao;
 
 /**
  * Created by bruno on 10/03/2017.
@@ -22,8 +23,8 @@ public class Jogo extends ObjetoComAreaJogavel{
         estadoJogo = EstadoJogo.A_DECORRER;
 
         objetivoJogo = new ObjetivoJogo();
-        objetivoJogo.adicionar(new ObjetivoParcial(Especie.STELLA,4));
-        objetivoJogo.adicionar(new ObjetivoParcial(Especie.BOMB, 3));
+        objetivoJogo.adicionar(new ObjetivoParcialBalao(Especie.STELLA, 4));
+        objetivoJogo.adicionar(new ObjetivoParcialBalao(Especie.BOMB, 3));
     }
 
     public void verificarInfluenciaObjetivoJogo(Balao balao) {

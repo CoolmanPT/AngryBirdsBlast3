@@ -1,6 +1,6 @@
 package modelo.Objetivos;
 
-import modelo.Balao;
+import modelo.suportados.Balao;
 
 /**
  * Created by Bruno on 31/03/2017.

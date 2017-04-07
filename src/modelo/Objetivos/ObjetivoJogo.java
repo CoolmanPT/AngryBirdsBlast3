@@ -1,6 +1,6 @@
 package modelo.Objetivos;
 
-import modelo.Balao;
+import modelo.suportados.Balao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Bruno on 31/03/2017.
  */
 public class ObjetivoJogo extends Objetivo {
-    List<ObjetivoParcial> objetivosParciais;
+    List<ObjetivoParcialBalao> objetivosParciais;
 
     public ObjetivoJogo() {
 
@@ -17,13 +17,13 @@ public class ObjetivoJogo extends Objetivo {
         this.objetivosParciais = objetivosParciais;
     }
 
-    public void adicionar(ObjetivoParcial objetivoParcial) {
+    public void adicionar(ObjetivoParcialBalao objetivoParcial) {
         objetivosParciais.add(objetivoParcial);
     }
 
     @Override
     public void influenciar(Balao balao) {
-        for (ObjetivoParcial objetivoParcial : objetivosParciais) {
+        for (ObjetivoParcialBalao objetivoParcial : objetivosParciais) {
             if (objetivoParcial.hasInfluencia(balao)) {
                 objetivoParcial.influenciar(balao);
             }
@@ -33,7 +33,7 @@ public class ObjetivoJogo extends Objetivo {
 
     @Override
     public boolean isConcluido() {
-        for (ObjetivoParcial objetivoParcial : objetivosParciais) {
+        for (ObjetivoParcialBalao objetivoParcial : objetivosParciais) {
             if (!objetivoParcial.isConcluido()) {
                 return false;
             }

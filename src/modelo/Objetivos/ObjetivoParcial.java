@@ -1,25 +1,13 @@
 package modelo.Objetivos;
 
-import modelo.Balao;
-import modelo.Especie;
+import modelo.suportados.Balao;
 
 /**
- * Created by Bruno on 31/03/2017.
+ * Created by Bruno on 07/04/2017.
  */
-public class ObjetivoParcial extends Objetivo {
-
-    private Especie especie;
+public abstract class ObjetivoParcial extends Objetivo {
     private int quantidade;
 
-    public ObjetivoParcial(Especie especie, int quantidade) {
-
-        this.especie = especie;
-        this.quantidade = quantidade;
-    }
-
-    public boolean hasInfluencia(Balao balao) {
-        return balao.getEspecie() == especie;
-    }
 
     @Override
     public void influenciar(Balao balao) {
@@ -33,8 +21,5 @@ public class ObjetivoParcial extends Objetivo {
         return quantidade <= 0;
     }
 
-    @Override
-    public String toString() {
-        return "Especie: " + especie + "\n" + "Quantidade: " + quantidade + "\n";
-    }
+    public abstract boolean hasInfluencia(Balao balao);
 }

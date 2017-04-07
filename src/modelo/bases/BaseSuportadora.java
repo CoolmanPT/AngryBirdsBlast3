@@ -1,6 +1,7 @@
 package modelo.bases;
 
 import modelo.*;
+import modelo.suportados.Balao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Created by bruno on 10/03/2017.
  */
-public class BaseSuportadora extends Base {
+public class BaseSuportadora extends Base implements SensivelOndaChoque {
 
     private Balao balao;
 
@@ -62,12 +63,12 @@ public class BaseSuportadora extends Base {
 
     }
 
-    public void setBalao(Balao balao) {
-        this.balao = balao;
-    }
-
     public Balao getBalao() {
         return balao;
+    }
+
+    public void setBalao(Balao balao) {
+        this.balao = balao;
     }
 
     public boolean permiteSubirBalao() {

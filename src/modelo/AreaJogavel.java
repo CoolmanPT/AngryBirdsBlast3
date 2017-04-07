@@ -3,6 +3,7 @@ package modelo;
 import modelo.bases.Base;
 import modelo.bases.BaseAr;
 import modelo.bases.BaseSuportadora;
+import modelo.suportados.Balao;
 
 import java.util.Random;
 

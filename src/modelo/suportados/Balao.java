@@ -1,5 +1,8 @@
-package modelo;
+package modelo.suportados;
 
+import modelo.Especie;
+import modelo.Jogo;
+import modelo.Sentido;
 import modelo.bases.BaseSuportadora;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.List;
 /**
  * Created by bruno on 17/03/2017.
  */
-public class Balao {
+public class Balao extends Suportado implements Objetivavel {
     private BaseSuportadora baseSuportadora;
     private Especie especie;
 

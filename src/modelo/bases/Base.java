@@ -1,9 +1,9 @@
 package modelo.bases;
 
 import modelo.AreaJogavel;
-import modelo.Balao;
 import modelo.ObjetoComAreaJogavel;
 import modelo.Posicao;
+import modelo.suportados.Balao;
 
 /**
  * Created by bruno on 10/03/2017.
