@@ -29,6 +29,7 @@ public class Jogo extends ObjetoComAreaJogavel{
     public void verificarInfluenciaObjetivoJogo(Balao balao) {
         objetivoJogo.influenciar(balao);
         if (objetivoJogo.isConcluido()){
+            System.out.println("VITORIA");
             estadoJogo = EstadoJogo.CONCLUIDO_VITORIA;
         }
     }

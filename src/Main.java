@@ -2,7 +2,6 @@ import modelo.EstadoJogo;
 import modelo.Jogo;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -30,9 +29,7 @@ public class Main {
                 String[] partes = jogada.split(",");
                 int linha = Integer.parseInt(partes[0]);
                 int coluna = Integer.parseInt(partes[1]);
-                boolean jogadaValida = jogo.interagir(linha,coluna);
-
-
+                boolean jogadaValida = jogo.interagir(linha, coluna);
 
 
             } catch (Exception e) {
