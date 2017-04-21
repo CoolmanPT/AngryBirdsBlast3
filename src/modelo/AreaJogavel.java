@@ -4,6 +4,9 @@ import modelo.bases.Base;
 import modelo.bases.BaseAr;
 import modelo.bases.BaseSuportadora;
 import modelo.suportados.Balao;
+import modelo.suportados.Madeira;
+import modelo.suportados.Porco;
+import modelo.suportados.Vidro;
 
 import java.util.Random;
 
@@ -16,10 +19,10 @@ public class AreaJogavel {
     private Jogo jogo;
     private Base[][] grelha;
     private int[][] nivel = {
-            {0,0,0,1,1},
-            {1,0,0,0,1},
-            {1,1,1,1,0},
-            {1,0,1,1,1},
+            {0, 0, 0, 4, 1},
+            {1, 0, 0, 1, 1},
+            {1, 1, 1, 2, 0},
+            {1, 0, 3, 1, 1},
             {1,1,1,1,1}
     };
 
@@ -34,6 +37,17 @@ public class AreaJogavel {
         for(int i = 0; i < getNumLinhas(); i++ ) {
             for (int j = 0; j < getNumColunas(); j++) {
                 grelha[i][j] = nivel[i][j] == 0 ? new BaseAr(this, new Posicao(i,j)) : new BaseSuportadora(this, new Posicao(i,j));
+                switch (nivel[i][j]) {
+                    case 2: //Porco
+                        ((BaseSuportadora) grelha[i][j]).setSuportado(new Porco((BaseSuportadora) grelha[i][j]));
+                        break;
+                    case 3: //Madeira
+                        ((BaseSuportadora) grelha[i][j]).setSuportado(new Madeira((BaseSuportadora) grelha[i][j]));
+                        break;
+                    case 4: //Vidro
+                        ((BaseSuportadora) grelha[i][j]).setSuportado(new Vidro((BaseSuportadora) grelha[i][j]));
+                        break;
+                }
             }
         }
     }
@@ -107,8 +121,8 @@ public class AreaJogavel {
 
     public Balao getBalaoEm(Posicao posicao) {
         Base base = getBase(posicao);
-        if (base != null && base instanceof BaseSuportadora){
-            return ((BaseSuportadora) base).getBalao();
+        if (base instanceof BaseSuportadora && ((BaseSuportadora) base).getSuportado() instanceof Balao) {
+            return (Balao) ((BaseSuportadora) base).getSuportado();
         }
         return null;
     }

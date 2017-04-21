@@ -1,6 +1,6 @@
 package modelo.Objetivos;
 
-import modelo.suportados.Balao;
+import modelo.suportados.Objetivavel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,16 @@ public class ObjetivoJogo extends Objetivo {
         this.objetivosParciais = objetivosParciais;
     }
 
+
     public void adicionar(ObjetivoParcialBalao objetivoParcial) {
         objetivosParciais.add(objetivoParcial);
     }
 
     @Override
-    public void influenciar(Balao balao) {
+    public void influenciar(Objetivavel objetivavel) {
         for (ObjetivoParcialBalao objetivoParcial : objetivosParciais) {
-            if (objetivoParcial.hasInfluencia(balao)) {
-                objetivoParcial.influenciar(balao);
+            if (objetivoParcial.hasInfluencia(objetivavel)) {
+                objetivoParcial.influenciar(objetivavel);
             }
 
         }

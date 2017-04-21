@@ -1,6 +1,7 @@
 package modelo.Objetivos;
 
-import modelo.suportados.Balao;
+import modelo.suportados.Objetivavel;
+import modelo.suportados.Porco;
 
 /**
  * Created by Bruno on 07/04/2017.
@@ -8,9 +9,12 @@ import modelo.suportados.Balao;
 public class ObjetivoParcialPorco extends ObjetivoParcial {
 
 
+    public ObjetivoParcialPorco(int quantidade) {
+        super(quantidade);
+    }
+
     @Override
-    public boolean hasInfluencia(Balao balao) {
-        //TODO
-        return false;
+    public boolean hasInfluencia(Objetivavel objetivavel) {
+        return objetivavel instanceof Porco;
     }
 }

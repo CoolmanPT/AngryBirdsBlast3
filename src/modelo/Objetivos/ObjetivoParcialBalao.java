@@ -2,6 +2,7 @@ package modelo.Objetivos;
 
 import modelo.Especie;
 import modelo.suportados.Balao;
+import modelo.suportados.Objetivavel;
 
 /**
  * Created by Bruno on 31/03/2017.
@@ -9,16 +10,16 @@ import modelo.suportados.Balao;
 public class ObjetivoParcialBalao extends ObjetivoParcial {
 
     private Especie especie;
-    private int quantidade;
+
 
     public ObjetivoParcialBalao(Especie especie, int quantidade) {
-
+        super(quantidade);
         this.especie = especie;
-        this.quantidade = quantidade;
+
     }
 
-    public boolean hasInfluencia(Balao balao) {
-        return balao.getEspecie() == especie;
+    public boolean hasInfluencia(Objetivavel objetivavel) {
+        return objetivavel instanceof Balao && ((Balao) objetivavel).getEspecie() == especie;
     }
 
     @Override

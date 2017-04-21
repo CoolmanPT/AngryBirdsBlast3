@@ -2,6 +2,8 @@ package modelo.bases;
 
 import modelo.*;
 import modelo.suportados.Balao;
+import modelo.suportados.Suportado;
+import modelo.suportados.SuportadoSensivelOndaChoque;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public class BaseSuportadora extends Base implements SensivelOndaChoque {
 
-    private Balao balao;
+    private Suportado suportado;
 
     public BaseSuportadora(AreaJogavel areaJogavel, Posicao posicao) {
         super(areaJogavel, posicao);
@@ -21,7 +23,7 @@ public class BaseSuportadora extends Base implements SensivelOndaChoque {
         List<Balao> aAnalisar = new ArrayList<>();
         List<Balao> analisados = new ArrayList<>();
 
-        aAnalisar.add(balao);
+        aAnalisar.add((Balao) suportado);
 
         while (!aAnalisar.isEmpty()){
             Balao balao = aAnalisar.remove(0);
@@ -43,12 +45,12 @@ public class BaseSuportadora extends Base implements SensivelOndaChoque {
     }
 
     public boolean isVazia() {
-        return balao == null;
+        return suportado == null;
     }
 
     @Override
     public void agarrar(Balao balao) {
-        this.balao = balao;
+        this.suportado = balao;
         balao.setBaseSuportadora(this);
         if (permiteSubirBalao()) {
             fazerBalaoSubir();
@@ -57,29 +59,29 @@ public class BaseSuportadora extends Base implements SensivelOndaChoque {
     }
 
     public void iterar() {
-        if (balao != null) {
-            balao.iterar();
+        if (suportado instanceof Balao) {
+            ((Balao) suportado).iterar();
         }
 
     }
 
-    public Balao getBalao() {
-        return balao;
+    public Suportado getSuportado() {
+        return suportado;
     }
 
-    public void setBalao(Balao balao) {
-        this.balao = balao;
+    public void setSuportado(Suportado suportado) {
+        this.suportado = suportado;
     }
 
     public boolean permiteSubirBalao() {
-        if (balao == null) {
+        if (!(suportado instanceof Balao)) {
             return false;
         }
         Base baseAcima = areaJogavel.getBase(posicao.seguir(Sentido.NORTE));
         if (baseAcima == null) {
             return false;
         }
-        return baseAcima.aceita(balao);
+        return baseAcima.aceita((Balao) suportado);
     }
 
     public void fazerBalaoSubir() {
@@ -87,29 +89,47 @@ public class BaseSuportadora extends Base implements SensivelOndaChoque {
             return;
         }
         Base baseAcima = areaJogavel.getBase(posicao.seguir(Sentido.NORTE));
-        baseAcima.agarrar(balao);
-        balao = null;
+        baseAcima.agarrar((Balao) suportado);
+        suportado = null;
     }
     public boolean podeInteragir(){
-        return !isVazia();
+        return suportado instanceof Balao;
     }
     public boolean reagirInteracao() {
         if (!podeInteragir()){
             return false;
         }
-        return balao.reagirInteracao();
+        return ((Balao) suportado).reagirInteracao();
     }
 
     public Balao getBalaoA(Sentido sentido) {
         return areaJogavel.getBalaoEm(posicao.seguir(sentido));
     }
 
-    public void libertarBalao() {
+    public void libertarSuportado() {
 
-        this.balao = null;
+        this.suportado = null;
     }
 
     public Jogo getJogo(){
         return areaJogavel.getJogo();
+    }
+
+    @Override
+    public void receberOndaChoque() {
+        if (suportado instanceof SuportadoSensivelOndaChoque) {
+            ((SuportadoSensivelOndaChoque) suportado).receberOndaChoque();
+        }
+    }
+
+    public List<SensivelOndaChoque> getVizinhosSensiveisOndaChoque() {
+        List<SensivelOndaChoque> sensiveis = new ArrayList<>();
+        for (Sentido sentido : Sentido.values()) {
+            Base base = areaJogavel.getBase(posicao.seguir(sentido));
+            if (base instanceof SensivelOndaChoque) {
+                sensiveis.add((SensivelOndaChoque) base);
+            }
+        }
+        return sensiveis;
     }
 }

@@ -3,6 +3,7 @@ import modelo.Jogo;
 import modelo.bases.Base;
 import modelo.bases.BaseAr;
 import modelo.bases.BaseSuportadora;
+import modelo.suportados.*;
 
 /**
  * Created by bruno on 17/03/2017.
@@ -54,12 +55,32 @@ public class RepresentadorTextual {
             if (baseSuportadora.isVazia()){
                 texto += "-";
             } else {
-                texto += baseSuportadora.getBalao().getEspecie().getInicial();
+                texto += representar(baseSuportadora.getSuportado());
 
             }
 
         }
         System.out.print(texto + " ");
+    }
+
+    private String representar(Suportado suportado) {
+        String texto = "";
+
+        if (suportado instanceof Balao) {
+            texto += ((Balao) suportado).getEspecie().getInicial();
+
+        } else if (suportado instanceof Madeira) {
+            Madeira madeira = (Madeira) suportado;
+            texto += madeira.getForca() > 1 ? "W" : "w";
+
+        } else if (suportado instanceof Vidro) {
+            texto += "V";
+        } else if (suportado instanceof Porco) {
+            Porco porco = (Porco) suportado;
+            texto += ((Porco) suportado).getForca() > 1 ? "P" : "p";
+        }
+
+        return texto;
     }
 
     private void representarPontuacao() {
